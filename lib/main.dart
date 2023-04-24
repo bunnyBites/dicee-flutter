@@ -24,32 +24,29 @@ class DicePage extends StatefulWidget {
 }
 
 class _DicePage extends State<DicePage> {
-  int leftDiceIndex = 1;
-  int rightDiceIndex = 1;
+  int leftDiceIndex = 3;
+  int rightDiceIndex = 5;
 
   @override
   Widget build(BuildContext context) {
+    void onHandleClick() => {
+          setState(() {
+            leftDiceIndex = (Random().nextInt(6) + 1);
+            rightDiceIndex = (Random().nextInt(6) + 1);
+          }),
+        };
+
     return Center(
       child: Row(
         children: [
           Expanded(
             child: TextButton(
-                onPressed: () => {
-                      setState(() {
-                        leftDiceIndex = (Random().nextInt(6) + 1);
-                      }),
-                      debugPrint("Left button is selected"),
-                    },
+                onPressed: onHandleClick,
                 child: Image.asset("images/dice$leftDiceIndex.png")),
           ),
           Expanded(
               child: TextButton(
-                  onPressed: () => {
-                        setState(() {
-                          rightDiceIndex = (Random().nextInt(6) + 1);
-                        }),
-                        debugPrint("Right button is pressed"),
-                      },
+                  onPressed: onHandleClick,
                   child: Image.asset("images/dice$rightDiceIndex.png"))),
         ],
       ),
